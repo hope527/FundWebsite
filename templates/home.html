@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+</head>
+
+
+<body>
+  <form action="." method="POST" name="form1">
+    {% csrf_token %}
+    <table border="1" cellspacing="1" cellpadding="4">
+      <tr>
+        <td><input type="text" id="year" name="year" /></td>
+      </tr>
+      <tr>
+        <th colspan="2" align="center">
+          <input type="submit" name="button" id="button" value="送出"></th>
+      </tr>
+    </table>
+  </form>
+</body>
+
+</html>

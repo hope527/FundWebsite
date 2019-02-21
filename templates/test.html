@@ -17,28 +17,16 @@
 
 <body>
 
-  <ul>
-    <a id="mds_1">1</a>
-    <a id="mds_2">2</a>
-    <a id="mds_3">3</a>
-    <a id="mds_4">4</a>
-    <a id="mds_5">5</a>
-    <a id="mds_6">6</a>
-    <a id="mds_7">7</a>
-    <a id="mds_8">8</a>
-    <a id="mds_9">9</a>
-    <a id="mds_10">10</a>
-    <a id="mds_11">11</a>
-    <a id="mds_12">12</a>
-  </ul>
+  <div class="" id="profit" size="700" width="700">
+    {{ div_profit|safe }}
+    {{ script_profit|safe }}
+  </div>
 
   <div class="" id="mds" size="700" width="700">
     {{ div_mds|safe }}
     {{ script_mds|safe }}
   </div>
 
-  {{ div_profit|safe }}
-  {{ script_profit|safe }}
   <script src="{% static "javascript/test.js" %}"></script>
 </body>
 

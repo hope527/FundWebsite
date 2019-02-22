@@ -18,6 +18,7 @@ from django.shortcuts import redirect, render
 
 mds_picture = []
 
+
 def home(request):
     if request.method == "POST":
         start = request.POST['start']

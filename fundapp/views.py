@@ -190,8 +190,6 @@ class Test:
             name_choose.append(camp[camp['label'] == i].sample(n=1).index[0])
 
         self.get_mds_picture(names_similarity, name_choose)
-        mds_picture = self.mds_picture
-
         nav_choose = self.get_nav(name_choose, self.start, self.end)
 
         interest_choose = 0

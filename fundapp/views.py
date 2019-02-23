@@ -23,7 +23,7 @@ def home(request):
     if request.method == "POST":
         start = request.POST['start']
         end = request.POST['end']
-        year = " ".join(start, end)
+        year = " ".join([start, end])
         return redirect('/test/' + year + '/')
     return render(request, "home.html", locals())
 

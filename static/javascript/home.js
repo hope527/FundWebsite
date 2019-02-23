@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   $(".datepicker").datepicker({
     dateFormat: 'yy-mm-dd',
     minDate: "2000-01-01",

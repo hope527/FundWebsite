@@ -74,13 +74,9 @@ class Test:
         return nav
 
     def get_colors(self, names, name_choose):
-        temp = pd.DataFrame(names, columns=['id'])
-        color_choose = []
-        for i in range(4):
-            color_choose.append(temp[temp['id'] == name_choose[i]].index[0])
         color = []
         for i in range(len(names)):
-            if i in color_choose:
+            if names[i] in name_choose:
                 color.append('red')
             else:
                 color.append('purple')
@@ -176,9 +172,8 @@ class Test:
         first = str(first).split('-')
         start = self.get_timestamp(first[0] + '-' + first[1] + '-01')
         end = self.get_timestamp(first[0] + '-' + first[1] + '-31')
-        names = pd.read_sql(sql='select distinct fund_id from price where date between ? and ?',
-                                con=self.engine, params=[start, end])
-        names = names['fund_id'].sample(n=300).values
+        names = pd.read_sql(sql='select distinct fund_id from price where date between ? and ? order by random() limit 300',
+                                con=self.engine, params=[start, end])['fund_id'].values
 
         names_similarity = self.get_mds(names, first)
         clustering = AgglomerativeClustering(n_clusters=4).fit(
@@ -196,17 +191,6 @@ class Test:
         for name in name_choose:
             interest_choose += (pd.read_sql(sql='select interest from interest where date between ? and ? and fund_id = ?',
                                             con=self.engine, params=[self.start, self.end, name])['interest'].sum())
-
-        temp = np.zeros((len(name_choose), len(nav_choose[0]) - 1))
-        for j in range(len(name_choose)):
-            for i in range(len(nav_choose[0]) - 1):
-                temp[j][i] = (nav_choose[j][i + 1] - nav_choose[j]
-                              [i]) / nav_choose[j][i]
-
-        rate_choose = []
-        for i in range(len(temp[0])):
-            rate_choose.append(
-                (temp[0][i] + temp[1][i] + temp[2][i] + temp[3][i]) / 4)
 
         profit_choose = []
         temp = nav_choose[0][0] + nav_choose[1][0] + \

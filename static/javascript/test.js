@@ -1,17 +1,17 @@
 $(function () {
-  pre_time = ''
+  pre_end = ''
   $("#profit").mousemove(function () {
     start = document.URL;
     start = start.substr(start.lastIndexOf("test/") + 5, 8) + '01'
-    time = $("#profit, .bk-canvas-overlays")
-    time = time.children().find('span').html()
-    time = time.substr(0, 8) + '01'
-    start = start.concat(' ', time)
-    if (pre_time != time) {
+    end = $("#profit, .bk-canvas-overlays")
+    end = end.children().find('span').html()
+    end = end.substr(0, 8) + '01'
+    start = start.concat(' ', end)
+    if (pre_end != end) {
       $.getJSON('/ajax_list/' + start, function (ret) {
         $("#mds").html(ret.div + ret.script);
       })
-      pre_time = time;
+      pre_end = end;
     }
   })
 });

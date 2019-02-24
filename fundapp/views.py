@@ -23,8 +23,7 @@ def home(request):
     if request.method == "POST":
         start = request.POST['start']
         end = request.POST['end']
-        year = " ".join([start, end])
-        return redirect('/test/' + year + '/')
+        return redirect('/test/' + " ".join([start, end]) + '/')
     return render(request, "home.html", locals())
 
 
@@ -38,11 +37,8 @@ def test(request, start, end):
     return render(request, "test.html", locals())
 
 
-def mds(request, start, time):
-    start = start.split('-')
-    time = time.split('-')
-    index = (int(time[0]) - int(start[0])) * 12 + int(time[1]) - int(start[1])
-    return JsonResponse(mds_picture[index])
+def mds(request, start, end):
+    return JsonResponse(mds_picture[(int(end[:4]) - int(start[:4])) * 12 + int(end[5:7]) - int(start[5:7])])
 
 
 class Test:
@@ -82,17 +78,12 @@ class Test:
                 color.append('purple')
         return color
 
-    def get_range(self):
-        start = self.start_str.split('-')
-        end = self.end_str.split('-')
-        return (int(end[0]) - int(start[0])) * 12 + int(end[1]) - int(start[1]) + 1
-
     def get_mds_picture(self, names_similarity, name_choose):
         TOOLTIPS = [
             ("fund_id", "@name"),
         ]
 
-        for k in range(self.get_range()):
+        for k in range(len(names_similarity)):
             mds = MDS(n_components=2, dissimilarity='precomputed', random_state=1).fit(
                 names_similarity[k]['similarity']).embedding_
             source = ColumnDataSource(data=dict(
@@ -111,14 +102,13 @@ class Test:
             mds_dict = {'script': script, 'div': div}
             self.mds_picture.append(mds_dict)
 
-    def get_mds(self, names, first):
+    def get_mds(self, names, start):
         names_similarity = []
 
-        for k in range(self.get_range()):
-            start = self.get_timestamp(first[0] + '-' + first[1] + '-01')
-            end = self.get_timestamp(first[0] + '-' + first[1] + '-31')
-
-            nav = self.get_nav(names, start, end)
+        for k in range((int(self.end_str[:4]) - int(self.start_str[:4])) * 12 + int(self.end_str[5:7]) - int(self.start_str[5:7]) + 1):
+            end = start + relativedelta(months=+1, days=-1)
+            nav = self.get_nav(names, self.get_timestamp(
+                start), self.get_timestamp(end))
 
             length = len(nav[0]) - 1
             rate = np.zeros((len(names), length))
@@ -142,14 +132,12 @@ class Test:
 
             names_similarity.append(
                 {'similarity': similarity, 'names': temp_names})
-            first = datetime.strptime(
-                '-'.join(first), '%Y-%m-%d %H:%M:%S') + relativedelta(months=+1)
-            first = str(first).split('-')
+            start = start + relativedelta(months=+1)
         return names_similarity
 
-    def get_profit_picture(self, start, end, profit_choose):
+    def get_profit_picture(self, profit_choose):
         date = pd.read_sql(sql='select distinct datetime(date, "unixepoch") from price where date between ? and ? order by date asc',
-                           con=self.engine, params=[start, end])
+                           con=self.engine, params=[self.start, self.end])
         date['profit'] = profit_choose
         date.rename(
             columns={'datetime(date, "unixepoch")': 'date'}, inplace=True)
@@ -167,15 +155,13 @@ class Test:
 
     def get_profit(self):
 
-        first = datetime.strptime(
-            self.start_str, '%Y-%m-%d') - relativedelta(months=+1)
-        first = str(first).split('-')
-        start = self.get_timestamp(first[0] + '-' + first[1] + '-01')
-        end = self.get_timestamp(first[0] + '-' + first[1] + '-31')
+        start = self.start_str.replace(self.start_str[-2:], '01')
+        start = datetime.strptime(start, '%Y-%m-%d') - relativedelta(months=+1)
+        end = start + relativedelta(months=+1, days=-1)
         names = pd.read_sql(sql='select distinct fund_id from price where date between ? and ? order by random() limit 300',
-                                con=self.engine, params=[start, end])['fund_id'].values
+                                con=self.engine, params=[self.get_timestamp(start), self.get_timestamp(end)])['fund_id'].values
 
-        names_similarity = self.get_mds(names, first)
+        names_similarity = self.get_mds(names, start)
         clustering = AgglomerativeClustering(n_clusters=4).fit(
             names_similarity[0]['similarity'])
         camp = pd.DataFrame(data=clustering.labels_,
@@ -183,10 +169,9 @@ class Test:
         name_choose = []
         for i in range(4):
             name_choose.append(camp[camp['label'] == i].sample(n=1).index[0])
-
         self.get_mds_picture(names_similarity, name_choose)
-        nav_choose = self.get_nav(name_choose, self.start, self.end)
 
+        nav_choose = self.get_nav(name_choose, self.start, self.end)
         interest_choose = 0
         for name in name_choose:
             interest_choose += (pd.read_sql(sql='select interest from interest where date between ? and ? and fund_id = ?',
@@ -200,6 +185,5 @@ class Test:
                 (nav_choose[0][i] + nav_choose[1][i] + nav_choose[2][i] + nav_choose[3][i] - temp) / temp * 100)
         profit_choose[-1] += interest_choose / temp * 100
 
-        script_profit, div_profit = self.get_profit_picture(
-            self.start, self.end, profit_choose)
+        script_profit, div_profit = self.get_profit_picture(profit_choose)
         return script_profit, div_profit

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Fund Index</title>
+  <link rel="stylesheet" href="style.css">
+  {% load staticfiles %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="gotop">˄</div>
+  <h1><span class="yellow">Fund Search{{errormessage}}</span></h1>
+  <button id="prev_page">上一頁</button>
+  <input id="page_num" type="number" min="1" max="1000" placeholder="     頁碼">
+  <button id="go">Go</button>
+  <button id="next_page">下一頁</button>
+  <select id="column">
+    <option value="fund_id">Fund id</option>
+    <option value="manager_fee">Manager_fee</option>
+    <option value="custody_fee">Custody_fee</option>
+    <option value="sales_fee">Sales_fee</option>
+    <option value="investment_target">Investment Target</option>
+    <option value="area">Area</option>
+  </select><br>
+
+
+  <input id="keyword" type="text" placeholder="             關鍵字查詢">
+  <button id="search">搜尋</button>
+  <div class="nav">
+  </div>
+  <div class="output">
+    <table class="container">
+      <thead>
+        <tr>
+          <th>
+            <h1>Fund ID</h1>
+          </th>
+          <th>
+            <h1>Manager Fee</h1>
+          </th>
+          <th>
+            <h1>Custody Fee</h1>
+          </th>
+          <th>
+            <h1>Sales Fee</h1>
+          </th>
+          <th>
+            <h1>Investment Target</h1>
+          </th>
+          <th>
+            <h1>Area</h1>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="items">
+        {% for item in items %}
+        <tr>
+          <td><a href="{{item.url}}">{{item.fund_id}}</td>
+          <td>{{item.manager_fee}}</td>
+          <td>{{item.custody_fee}}</td>
+          <td>{{item.sales_fee}}</td>
+          <td>{{item.investment_target}}</td>
+          <td>{{item.area}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+  <script src="{% static "javascript/index.js" %}"></script>
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script>
+    $("#gotop").click(function(){
+      jQuery("html,body").animate({
+        scrollTop:0
+        },1000);
+      });
+    $(window).scroll(function() {
+      if ( $(this).scrollTop() > 300){
+      $('#gotop').fadeIn("fast");
+      } else {
+      $('#gotop').stop().fadeOut("fast");
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test_show</title>
+  {% load staticfiles %}
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.css" rel="stylesheet" type="text/css">
+
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.js"></script>
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <div id="url" style="display:none">{{url}}</div>
+  <img class="loading" src="{% static "image/loading.gif" %}">
+  <div id="sharpe_ratio"></div>
+  <div id="std"></div>
+  <div id="beta"></div>
+  <div id="treynor_ratio"></div>
+  <div id="money"></div>
+  <div id="profit"></div>
+  <div id="mean_similarity"></div>
+  <div id="profit_img"></div>
+  <div id="mds"></div>
+
+  <script src="{% static "javascript/test_show.js" %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static "css/test_show.css" %}" media="screen" />
+</body>
+
+</html>

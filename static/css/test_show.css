@@ -1,8 +1,19 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+  color:#000000;
+  background-color:#f4f7f8;
+}
+
+
+
+
 .mds
 {
 width: 700px;
-background: #ffffff; 
-height: 700px; 
+background: #ffffff;
+height: 700px;
 text-align: center;
 line-height: 80px;
 }

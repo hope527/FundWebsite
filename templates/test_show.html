@@ -16,18 +16,24 @@
 </head>
 
 <body>
-
   <div id="url" style="display:none">{{url}}</div>
   <img class="loading" src="{% static "image/loading.gif" %}">
-  <div id="sharpe_ratio"></div>
-  <div id="std"></div>
-  <div id="beta"></div>
-  <div id="treynor_ratio"></div>
-  <div id="money"></div>
-  <div id="profit"></div>
-  <div id="mean_similarity"></div>
-  <div id="profit_img"></div>
+
+  <h2>
+  <div id="sharpe_ratio" style="float:left" align="center"></div>
+  <div id="std" style="float:right" align="center"></div>
+  <div id="beta" style="float:center" align="center"></div></br>
+  <div id="treynor_ratio" style="float:left" align="center"></div>
+  <div id="money" style="float:right" align="center"></div>
+  <div id="profit" style="float:center" align="center"></div></br>
+  <div id="mean_similarity" style="float:center" align="center"></div>
+  </h2>
+
+  <center>
+  <div id="profit_img"></div><br>
   <div id="mds"></div>
+  </center>
+
 
   <script src="{% static "javascript/test_show.js" %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static "css/test_show.css" %}" media="screen" />

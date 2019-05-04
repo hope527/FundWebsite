@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
   <title>Fund Predection</title>
@@ -10,156 +10,168 @@
 </head>
 
 <body>
-      <form action="." method="POST" name="form" id="form">
-        {% csrf_token %}
-        <h1>Fund Predection</h1>
+  <form action="." method="POST" name="form" id="form">
+    {% csrf_token %}
 
-        <div class="left">
-        <fieldset>
-          <legend><span class="number">1</span>日期與投資類型</legend>
-          <label for="Date">開始日期:</label>
-          <select name="start_year">
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-          </select>
-          <select name="start_month">
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <label for="Date">結束日期:</label>
-          <select name="end_year">
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-          </select>
-          <select name="end_month">
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <label for="job">投資類型:</label>
-          <select name="investement_type">
-            <option value="不分類">不分類</option>
-            <optgroup label="境內">
-              <option value="境內 ETF">ETF</option>
-              <option value="境內 房地產">房地產</option>
-              <option value="境內 貨幣">貨幣</option>
-              <option value="境內 股票">股票</option>
-              <option value="境內 股票+債券">股票+債券</option>
-              <option value="境內 小型股">小型股</option>
-              <option value="境內 科技股">科技股</option>
-              <option value="境內 債券">債券</option>
-              <option value="境內 基金">基金</option>
-              <option value="境內 不動產證券化">不動產證券化</option>
-              <option value="境內 能源股票">能源股票</option>
-              <option value="境內 指數型基金">指數型基金</option>
-              <option value="境內 多重資產型">多重資產型</option>
-              <option value="境內 保本型">保本型</option>
-              <option value="境內 資產證券化">資產證券化</option>
-            <optgroup label="境外">
-              <option value="境外 平衡型">平衡型</option>
-              <option value="境外 貴重金屬股票">貴重金屬股票</option>
-              <option value="境外 債券型">債券型</option>
-              <option value="境外 股票型">股票型</option>
-              <option value="境外 小型股">小型股</option>
-              <option value="境外 對沖型基金">對沖型基金</option>
-              <option value="境外 科技股">科技股</option>
-              <option value="境外 房地產">房地產</option>
-              <option value="境外 醫療生化股">醫療生化股</option>
-              <option value="境外 貨幣型">貨幣型</option>
-              <option value="境外 認股權証/轉換公司債">認股權証/轉換公司債</option>
-              <option value="境外 其他">其他</option>
-              <option value="境外 能源股票">能源股票</option>
-          </select>
-        </fieldset>
-      </div>
+    <header id="header">
+      <a href="http://127.0.0.1:8000/test/"><img class="loading" src="{% static "image/avengers.ico" %}"></a>
+      <nav>
+        <ul>
+          <li><a href="http://127.0.0.1:8000/index/" target="_blank">Index</a></li>
+          <li><a href="http://127.0.0.1:8000/test/">Search</a></li>
+          <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <br><br><br>
+    <h1>Fund Predection</h1>
 
-      <div class="right">
-        <fieldset>
-          <legend><span class="number">2</span>指標</legend>
-          <label for="sharpe_ratio">夏普指標:</label>
-          <input type="value" name="sharpe_ratio">
+    <div class="left">
+      <fieldset>
+        <legend><span class="number">1</span>日期與投資類型</legend>
+        <label for="Date">開始日期:</label>
+        <select name="start_year">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+        </select>
+        <select name="start_month">
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label for="Date">結束日期:</label>
+        <select name="end_year">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+          <option value="2004">2004</option>
+          <option value="2005">2005</option>
+          <option value="2006">2006</option>
+          <option value="2007">2007</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+        </select>
+        <select name="end_month">
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label for="job">投資類型:</label>
+        <select name="investement_type">
+          <option value="不分類">不分類</option>
+          <optgroup label="境內">
+            <option value="境內 ETF">ETF</option>
+            <option value="境內 房地產">房地產</option>
+            <option value="境內 貨幣">貨幣</option>
+            <option value="境內 股票">股票</option>
+            <option value="境內 股票+債券">股票+債券</option>
+            <option value="境內 小型股">小型股</option>
+            <option value="境內 科技股">科技股</option>
+            <option value="境內 債券">債券</option>
+            <option value="境內 基金">基金</option>
+            <option value="境內 不動產證券化">不動產證券化</option>
+            <option value="境內 能源股票">能源股票</option>
+            <option value="境內 指數型基金">指數型基金</option>
+            <option value="境內 多重資產型">多重資產型</option>
+            <option value="境內 保本型">保本型</option>
+            <option value="境內 資產證券化">資產證券化</option>
+          <optgroup label="境外">
+            <option value="境外 平衡型">平衡型</option>
+            <option value="境外 貴重金屬股票">貴重金屬股票</option>
+            <option value="境外 債券型">債券型</option>
+            <option value="境外 股票型">股票型</option>
+            <option value="境外 小型股">小型股</option>
+            <option value="境外 對沖型基金">對沖型基金</option>
+            <option value="境外 科技股">科技股</option>
+            <option value="境外 房地產">房地產</option>
+            <option value="境外 醫療生化股">醫療生化股</option>
+            <option value="境外 貨幣型">貨幣型</option>
+            <option value="境外 認股權証/轉換公司債">認股權証/轉換公司債</option>
+            <option value="境外 其他">其他</option>
+            <option value="境外 能源股票">能源股票</option>
+        </select>
+      </fieldset>
+    </div>
 
-          <label for="std">標準差:</label>
-          <input type="value" name="std">
+    <div class="right">
+      <fieldset>
+        <legend><span class="number">2</span>指標</legend>
+        <label for="sharpe_ratio">夏普指標:</label>
+        <input type="value" name="sharpe_ratio">
 
-          <label for="beta">Beta值:</label>
-          <input type="value" name="beta">
+        <label for="std">標準差:</label>
+        <input type="value" name="std">
 
-          <label for="treynor_ratio">Treynor指數:</label>
-          <input type="value" name="treynor_ratio">
+        <label for="beta">Beta值:</label>
+        <input type="value" name="beta">
 
-          <label for="btest_time">回挑選時長（月）:</label>
-          <input type="value" name="btest_time">
-        </fieldset>
-      </div>
+        <label for="treynor_ratio">Treynor指數:</label>
+        <input type="value" name="treynor_ratio">
 
-      <div class="left">
-        <fieldset>
-          <legend><span class="number">3</span>金額與權重</legend>
-          <label for="money">總投入資金:</label>
-          <input type="value" name="money" value="100000">
+        <label for="btest_time">回挑選時長（月）:</label>
+        <input type="value" name="btest_time">
+      </fieldset>
+    </div>
 
-          <label for="ratio">權重:</label>
-          <input type="value" name="buy_ratio0" value="0.25">
-          <input type="value" name="buy_ratio1" value="0.25">
-          <input type="value" name="buy_ratio2" value="0.25">
-          <input type="value" name="buy_ratio3" value="0.25">
-        </fieldset>
-      </div>
+    <div class="left">
+      <fieldset>
+        <legend><span class="number">3</span>金額與權重</legend>
+        <label for="money">總投入資金:</label>
+        <input type="value" name="money" value="100000">
 
-      <div class="right">
-        <fieldset>
+        <label for="ratio">權重:</label>
+        <input type="value" name="buy_ratio0" value="0.25">
+        <input type="value" name="buy_ratio1" value="0.25">
+        <input type="value" name="buy_ratio2" value="0.25">
+        <input type="value" name="buy_ratio3" value="0.25">
+      </fieldset>
+    </div>
+
+    <div class="right">
+      <fieldset>
         <legend><span class="number">4</span>策略與頻率</legend>
         <label>策略:</label>
         <input type="radio" name="strategy" value="0"><label for="0" class="light">買入持有策略</label><br><br>
@@ -170,12 +182,13 @@
         <label> </label>
         <label for="frequency">策略執行頻率（月）:</label>
         <input type="value" name="frequency">
-        </fieldset>
-      </div>
-        <input type="submit" name="button" value="Submit">
-      </form>
+      </fieldset>
+    </div>
+    <input type="submit" name="button" value="Submit">
+  </form>
 
-      <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}" media="screen" />
-      <script src="{% static "javascript/test.js" %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}" media="screen" />
+  <script src="{% static "javascript/test.js" %}"></script>
 </body>
+
 </html>

@@ -9,24 +9,48 @@
 </head>
 
 <body>
+  <header id="header">
+    <a href="http://127.0.0.1:8000/index/"><img class="loading" src="{% static "image/avengers.ico" %}"></a>
+    <nav>
+      <ul>
+        <li><a href="http://127.0.0.1:8000/index/">Index</a></li>
+        <li><a href="http://127.0.0.1:8000/test/" target="_blank">Search</a></li>
+        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <br>
+
   <h1><span class="yellow">Fund Detailed Information{{errormessage}}</span></h1>
   <div class="nav">
   </div>
   <div class="output">
     <table class="container">
       <thead id="items">
-        <tr><td>Chinese Name</td>
-            <td>{{item.0.chinese_name}}</td></tr>
-        <tr><td>English Name</td>
-            <td>{{item.0.english_name}}</td></tr>
-        <tr><td>Classfication</td>
-            <td>{{item.0.classfication}}</td></tr>
-        <tr><td>Redemption Fee</td>
-            <td>{{item.0.redemption_fee}}</td></tr>
-        <tr><td>Isin Code</td>
-            <td>{{item.0.isin_code}}</td></tr>
-        <tr><td>Entry Day</td>
-            <td>{{item.0.entry_day}}</td></tr>
+        <tr>
+          <td>Chinese Name</td>
+          <td>{{item.0.chinese_name}}</td>
+        </tr>
+        <tr>
+          <td>English Name</td>
+          <td>{{item.0.english_name}}</td>
+        </tr>
+        <tr>
+          <td>Classfication</td>
+          <td>{{item.0.classfication}}</td>
+        </tr>
+        <tr>
+          <td>Redemption Fee</td>
+          <td>{{item.0.redemption_fee}}</td>
+        </tr>
+        <tr>
+          <td>Isin Code</td>
+          <td>{{item.0.isin_code}}</td>
+        </tr>
+        <tr>
+          <td>Entry Day</td>
+          <td>{{item.0.entry_day}}</td>
+        </tr>
       </thead>
 
     </table>

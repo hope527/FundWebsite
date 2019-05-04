@@ -10,24 +10,39 @@
 </head>
 
 <body>
+  <header id="header">
+    <a href="http://127.0.0.1:8000/index/"><img class="loading" src="{% static "image/avengers.ico" %}"></a>
+    <nav>
+      <ul>
+        <li><a href="http://127.0.0.1:8000/index/">Index</a></li>
+        <li><a href="http://127.0.0.1:8000/test/" target="_blank">Search</a></li>
+        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <div id="gotop">˄</div>
+  <br>
   <h1><span class="yellow">Fund Search{{errormessage}}</span></h1>
-  <button id="prev_page" style="width:80px;height:30px;font-size:20px;">上一頁</button>
-  <input id="page_num" type="number" min="1" max="1000" placeholder=" 頁碼..." style="width:150px;height:25px;font-size:20px;">
-  <button id="go" style="width:70px;height:30px;font-size:20px;">Go</button>
-  <button id="next_page" style="width:80px;height:30px;font-size:20px;">下一頁</button>
-  <select id="column" style="width:200px;height:30px;font-size:20px;">
-    <option value="fund_id">Fund id</option>
-    <option value="manager_fee">Manager_fee</option>
-    <option value="custody_fee">Custody_fee</option>
-    <option value="sales_fee">Sales_fee</option>
-    <option value="investment_target">Investment Target</option>
-    <option value="area">Area</option>
-  </select><br>
 
+  <div>
+    <button id="prev_page" style="width:80px;height:30px;font-size:15px;">上一頁</button>
+    <input id="page_num" type="number" min="1" max="1000" placeholder=" 頁碼..." style="width:150px;height:25px;font-size:15px;">
+    <button id="go" style="width:70px;height:30px;font-size:15px;">Go</button>
+    <button id="next_page" style="width:80px;height:30px;font-size:15px;">下一頁</button>
+    <select id="column" style="width:200px;height:30px;font-size:15px;">
+      <option value="fund_id">Fund id</option>
+      <option value="manager_fee">Manager_fee</option>
+      <option value="custody_fee">Custody_fee</option>
+      <option value="sales_fee">Sales_fee</option>
+      <option value="investment_target">Investment Target</option>
+      <option value="area">Area</option>
+    </select>
 
-  <input id="keyword" type="text" placeholder=" 關鍵字查詢" style="width:200px;height:30px;font-size:20px;">
-  <button id="search" style="width:70px;height:30px;font-size:20px;">搜尋</button>
+    <button id="search" style="width:70px;height:30px;font-size:15px;float:right;">搜尋</button>
+    <input id="keyword" type="text" placeholder=" 關鍵字查詢" style="width:200px;height:25px;font-size:15px;float:right;">
+  </div>
+
   <div class="nav">
   </div>
   <div class="output">
@@ -73,16 +88,16 @@
   <script src="{% static "javascript/index.js" %}"></script>
   <script src="{% static "js/jquery.min.js" %}"></script>
   <script>
-    $("#gotop").click(function(){
+    $("#gotop").click(function() {
       jQuery("html,body").animate({
-        scrollTop:0
-        },1000);
-      });
+        scrollTop: 0
+      }, 1000);
+    });
     $(window).scroll(function() {
-      if ( $(this).scrollTop() > 300){
-      $('#gotop').fadeIn("fast");
+      if ($(this).scrollTop() > 300) {
+        $('#gotop').fadeIn("fast");
       } else {
-      $('#gotop').stop().fadeOut("fast");
+        $('#gotop').stop().fadeOut("fast");
       }
     });
   </script>

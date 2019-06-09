@@ -10,8 +10,10 @@ $(function () {
     $("#treynor_ratio").text("Treynor指數: " + response_data.treynor_ratio);
     $("#money").text("期末金額: " + response_data.money);
     $("#profit").text("期末報酬率(%): " + response_data.profit + "%");
+    $("#simulation").text("預估五年後報酬率(%): " + response_data.simulation + "%");
     $("#mean_similarity").text("平均距離: " + response_data.mean_similarity);
     $("#profit_img").html(response_data['profit_img'].div + response_data['profit_img'].script);
+    $("#predict_price").html(response_data['predict_price'].div + response_data['predict_price'].script);
     $("#mds").html(response_data[response_data["start"]].div + response_data[response_data["start"]].script);
   })
 

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <title>Test_show</title>
   {% load staticfiles %}
-  <link href="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" rel="stylesheet" type="text/css">
-  <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css" rel="stylesheet" type="text/css">
-  <link href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.1.0.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.1.0.min.css" rel="stylesheet" type="text/css">
 
-  <script src="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
-  <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.js"></script>
-  <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.0.4.min.js"></script>
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.1.0.min.js"></script>
+  <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.1.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -25,7 +25,8 @@
       <ul>
         <li><a href="http://127.0.0.1:8000/index/" target="_blank">Index</a></li>
         <li><a href="http://127.0.0.1:8000/test/" target="_blank">Search</a></li>
-        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308"
+            target="_blank">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -38,15 +39,17 @@
     <div id="treynor_ratio" style="float:left" align="center"></div>
     <div id="money" style="float:right" align="center"></div>
     <div id="profit" style="float:center" align="center"></div></br>
-    <div id="mean_similarity" style="float:center" align="center"></div>
-  </h2>
-
-  <center>
-    <div id="profit_img"></div><br>
-    <div id="mds"></div>
-  </center>
+    <div id="simulation" style="float:left" align="center"></div>
+    <div id="mean_similarity" style="float:right" align="center"></div>
+  </h2><br>
 
 
+    <div id="profit_img" style="float:left"></div>
+    <div id="predict_price" style="float:right"></div></br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <center><div id="mds" background-image="https://www.pngfind.com/img/320bg.png"></div></center>
+    <div></div>
+    
   <script src="{% static "javascript/test_show.js" %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static "css/test_show.css" %}" media="screen" />
 </body>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Show Fund DB</title>
+  {% load staticfiles %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1><span class="yellow">Fund Detailed Information{{errormessage}}</span></h1>
+  <div class="nav">
+  </div>
+  <div class="output">
+    <table class="container">
+      <thead id="items">
+        <tr><td>Chinese Name</td>
+            <td>{{item.0.chinese_name}}</td></tr>
+        <tr><td>English Name</td>
+            <td>{{item.0.english_name}}</td></tr>
+        <tr><td>Market</td>
+            <td>{{item.0.market}}</td></tr>
+        <tr><td>Regional</td>
+            <td>{{item.0.regional}}</td></tr>
+        <tr><td>Isin Code</td>
+            <td>{{item.0.isin_code}}</td></tr>
+        <tr><td>Entry Day</td>
+            <td>{{item.0.entry_day}}</td></tr>
+      </thead>
+
+    </table>
+  </div>
+  <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+  <!-- <script src="{% static "javascript/form.js" %}"></script> -->
+</body>
+
+</html>

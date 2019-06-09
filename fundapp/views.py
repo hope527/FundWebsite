@@ -83,10 +83,12 @@ def index_form(request, fund_id, area):
     if area == "境內":
         item = pd.read_sql("select * from basic_information,domestic_information where basic_information.fund_id = ? and domestic_information.fund_id = ?",
                            con=engine, params=[fund_id, fund_id])
-    else:
+        item = item.drop(["fund_id"], axis=1)
+        item = item.to_dict('records', into=defaultdict(list))
+        return render(request, "index_form.html", locals())
+    elif area == "境外":
         item = pd.read_sql("select * from basic_information,overseas_information where basic_information.fund_id = ? and overseas_information.fund_id = ?",
                            con=engine, params=[fund_id, fund_id])
-
-    item = item.drop(["fund_id"], axis=1)
-    item = item.to_dict('records', into=defaultdict(list))
-    return render(request, "index_form.html", locals())
+        item = item.drop(["fund_id"], axis=1)
+        item = item.to_dict('records', into=defaultdict(list))
+        return render(request, "index_oversea.html", locals())

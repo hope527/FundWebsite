@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Fund Predection</title>
+  <title>Fund Backtesting</title>
   {% load staticfiles %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
@@ -14,21 +14,21 @@
     {% csrf_token %}
 
     <header id="header">
-      <a href="http://127.0.0.1:8000/test/"><img class="loading" src="{% static "image/avengers.ico" %}"></a>
+      <a href="http://127.0.0.1:8000/index/"><img class="home" src="{% static "image/home.ico" %}"></a>
       <nav>
         <ul>
-          <li><a href="http://127.0.0.1:8000/index/" target="_blank">Index</a></li>
-          <li><a href="http://127.0.0.1:8000/test/">Search</a></li>
-          <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+          <li><a href="http://127.0.0.1:8000/index/">Index</a></li>
+          <li><a href="http://127.0.0.1:8000/test/">Test</a></li>
+          <li><a href="http://127.0.0.1:8000/contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <br><br><br>
-    <h1>Fund Predection</h1>
+    <h1>Fund Backtesting</h1>
 
     <div class="left">
       <fieldset>
-        <legend><span class="number">1</span>日期與投資類型</legend>
+        <legend><span class="number">1</span>投資日期</legend>
         <label for="Date">開始日期:</label>
         <select name="start_year">
           <option value="2000">2000</option>
@@ -99,7 +99,55 @@
           <option value="11">11</option>
           <option value="12">12</option>
         </select>
-        <label for="job">投資類型:</label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">2</span>總投入金額</legend>
+        <input type="value" name="money" value="100000">
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">3</span>資金投入方式</legend>
+        <input type="radio" name="investement_method" value="single" id="single"> 單筆<br>
+        <input type="radio" name="investement_method" value="regular" id="regular"> 定期定額<br>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">4</span>持有權重</legend>
+        <input type="value" name="buy_ratio0" value="0.25">
+        <input type="value" name="buy_ratio1" value="0.25">
+        <input type="value" name="buy_ratio2" value="0.25">
+        <input type="value" name="buy_ratio3" value="0.25">
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">5</span>投資策略</legend>
+        <div style="display:none" id="strategy1">
+          <input type="radio" name="strategy" value="0"><label for="0" class="light">買入持有策略</label><br><br>
+          <input type="radio" name="strategy" value="1"><label for="1" class="light">動態權重平衡策略 </label><br><br>
+          <input type="radio" name="strategy" value="3"><label for="3" class="light">動態資產調整策略</label><br><br>
+        </div>
+        <div style="display:none" id="strategy2">
+          <input type="radio" name="strategy" value="2"><label for="2" class="light">定期定額</label><br><br>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">6</span>策略執行頻率（月）</legend>
+        <input type="value" value="3" name="frequency">
+      </fieldset>
+    </div>
+
+    <div class="right">
+      <fieldset>
+        <legend><span class="number">7</span>回測時間(月)</legend>
+        <input type="value" value="12" name="btest_time">
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="number">8</span>資產類型</legend>
         <select name="investement_type">
           <option value="不分類">不分類</option>
           <optgroup label="境內">
@@ -134,57 +182,34 @@
             <option value="境外 能源股票">能源股票</option>
         </select>
       </fieldset>
-    </div>
 
-    <div class="right">
       <fieldset>
-        <legend><span class="number">2</span>指標</legend>
-        <label for="sharpe_ratio">夏普指標:</label>
-        <input type="value" name="sharpe_ratio">
+        <legend><span class="number">9</span>挑選原則</legend>
+        <input type="radio" name="pick_method" value="comprehensive" id="comprehensive"> 綜合指標<br>
+        <input type="radio" name="pick_method" value="risk" id="risk"> 風險與報酬<br>
 
-        <label for="std">標準差:</label>
-        <input type="value" name="std">
 
-        <label for="beta">Beta值:</label>
-        <input type="value" name="beta">
+        <div style="display:none" id="comprehensive_value">
+          <label for="sharpe_ratio"><input type="checkbox" value="is_sharpe" name="is_index">夏普指標:</label>
+          <input type="value" name="sharpe_ratio">
 
-        <label for="treynor_ratio">Treynor指數:</label>
-        <input type="value" name="treynor_ratio">
+          <label for="sharpe_ratio"><input type="checkbox" value="is_treynor" name="is_index">Treynor指數:</label>
+          <input type="value" name="treynor_ratio">
+        </div>
 
-        <label for="btest_time">回挑選時長（月）:</label>
-        <input type="value" name="btest_time">
+        <div style="display:none" id="risk_value">
+          <label for="std"><input type="checkbox" value="is_std" name="is_index">標準差:</label>
+          <input type="value" name="std">
+
+          <label for="beta"><input type="checkbox" value="is_beta" name="is_index">Beta值:</label>
+          <input type="value" name="beta">
+
+          <label for="revenue"><input type="checkbox" value="is_revenue" name="is_index">報酬:</label>
+          <input type="value" name="revenue">
+        </div>
       </fieldset>
+      <input type="submit" name="button" value="Submit">
     </div>
-
-    <div class="left">
-      <fieldset>
-        <legend><span class="number">3</span>金額與權重</legend>
-        <label for="money">總投入資金:</label>
-        <input type="value" name="money" value="100000">
-
-        <label for="ratio">權重:</label>
-        <input type="value" name="buy_ratio0" value="0.25">
-        <input type="value" name="buy_ratio1" value="0.25">
-        <input type="value" name="buy_ratio2" value="0.25">
-        <input type="value" name="buy_ratio3" value="0.25">
-      </fieldset>
-    </div>
-
-    <div class="right">
-      <fieldset>
-        <legend><span class="number">4</span>策略與頻率</legend>
-        <label>策略:</label>
-        <input type="radio" name="strategy" value="0"><label for="0" class="light">買入持有策略</label><br><br>
-        <input type="radio" name="strategy" value="1"><label for="1" class="light">固定比例投資策略 </label><br><br>
-        <input type="radio" name="strategy" value="2"><label for="2" class="light">定期定額</label><br><br>
-        <input type="radio" name="strategy" value="3"><label for="3" class="light">動態資產配置策略</label><br><br>
-
-        <label> </label>
-        <label for="frequency">策略執行頻率（月）:</label>
-        <input type="value" name="frequency">
-      </fieldset>
-    </div>
-    <input type="submit" name="button" value="Submit">
   </form>
 
   <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}" media="screen" />

@@ -4,26 +4,27 @@
 <head>
   <meta charset="utf-8" />
   <title>Fund Index</title>
-  <link rel="stylesheet" href="style.css">
+
   {% load staticfiles %}
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
   <header id="header">
-    <a href="http://127.0.0.1:8000/index/"><img class="loading" src="{% static "image/avengers.ico" %}"></a>
+    <a href="http://127.0.0.1:8000/index/"><img class="loading" src="{% static "image/home.ico" %}"></a>
     <nav>
       <ul>
         <li><a href="http://127.0.0.1:8000/index/">Index</a></li>
-        <li><a href="http://127.0.0.1:8000/test/" target="_blank">Search</a></li>
-        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308" target="_blank">Contact</a></li>
+        <li><a href="http://127.0.0.1:8000/test/">Test</a></li>
+        <li><a href="http://127.0.0.1:8000/contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <div id="gotop">˄</div>
   <br>
-  <h1><span class="yellow">Fund Search{{errormessage}}</span></h1>
+  <h1><span class="yellow">Fund Index{{errormessage}}</span></h1>
 
   <div>
     <button id="prev_page" style="width:80px;height:30px;font-size:15px;">上一頁</button>

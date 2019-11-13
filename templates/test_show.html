@@ -17,41 +17,79 @@
 
 <body>
   <div id="url" style="display:none">{{url}}</div>
-  <img class="loading" src="{% static "image/loading2.gif" %}">
-
 
   <header id="header">
+    <a href="http://127.0.0.1:8000/index/"><img class="home" src="{% static "image/home.ico" %}"></a>
     <nav>
       <ul>
         <li><a href="http://127.0.0.1:8000/index/" target="_blank">Index</a></li>
-        <li><a href="http://127.0.0.1:8000/test/" target="_blank">Search</a></li>
-        <li><a href="https://i1.wp.com/polizeros.com/wp-content/uploads/2011/10/inbred-cats.jpg?resize=298%2C308"
-            target="_blank">Contact</a></li>
+        <li><a href="http://127.0.0.1:8000/test/" target="_blank">Test</a></li>
+        <li><a href="http://127.0.0.1:8000/contact"target="_blank">Contact</a></li>
       </ul>
     </nav>
   </header>
-  <br><br>
-
-  <h2>
-    <div id="sharpe_ratio" style="float:left" align="center"></div>
-    <div id="std" style="float:right" align="center"></div>
-    <div id="beta" style="float:center" align="center"></div></br>
-    <div id="treynor_ratio" style="float:left" align="center"></div>
-    <div id="money" style="float:right" align="center"></div>
-    <div id="profit" style="float:center" align="center"></div></br>
-    <div id="simulation" style="float:left" align="center"></div>
-    <div id="mean_similarity" style="float:right" align="center"></div>
-  </h2><br>
+  <br><br><br>
 
 
-    <div id="profit_img" style="float:left"></div>
-    <div id="predict_price" style="float:right"></div></br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <center><div id="mds" background-image="https://www.pngfind.com/img/320bg.png"></div></center>
-    <div></div>
-    
+  <center>
+  <div class="loading">
+  <img src="{% static "image/loading2.gif" %}" width="250" height="250"/>
+  </div>
+  </center>
+
+  <div class="left">
+      <table style="display:none" id="table" border="1" cellpadding="20">
+      <tr>
+        　<td colspan="2">*綜合指標</td>
+      </tr>
+      　<tr>
+        　<td id="sharpe_ratio"></td>
+        　<td id="market_sharpe"></td>
+      </tr>
+      <tr>
+        　<td id="treynor_ratio"></td>
+        　<td>市場Treynor指數: X</td>
+      </tr>
+
+      　<tr>
+        　<td colspan="2">*風險</td>
+      </tr>
+      　<tr>
+        　<td id="std"></td>
+        　<td id="market_std"></td>
+      </tr>
+      <tr>
+        　<td id="beta"></td>
+        　<td>市場beta: X</td>
+      </tr>
+
+      <tr>
+        　<td colspan="2">*報酬</td>
+        　</tr>
+      　<tr>
+        　<td id="profit"></td>
+        　<td id="market_revenue"></td>
+        　</tr>
+      <tr>
+        　<td id="money" colspan="2"></td>
+      </tr>
+      <tr>
+        　<td id="mean_similarity" colspan="2"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="right">
+      <div id="profit_img" style="float:left"></div>
+      <div id="distance" style="float:right"></div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br>
+      <div id="mds" background-image="https://www.pngfind.com/img/320bg.png"></div>
+  </div></br>
+
   <script src="{% static "javascript/test_show.js" %}"></script>
-  <link rel="stylesheet" type="text/css" href="{% static "css/test_show.css" %}" media="screen" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}" media="screen" />
 </body>
 
 </html>

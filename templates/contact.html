@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <title>Contact</title>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+  </head>
+
+  <body>
+    <header id="header">
+      <a href="http://127.0.0.1:8000/index/"><img class="loading" src="{% static "image/home.ico" %}"></a>
+      <nav>
+        <ul>
+          <li><a href="http://127.0.0.1:8000/index/">Index</a></li>
+          <li><a href="http://127.0.0.1:8000/test/">Test</a></li>
+          <li><a href="http://127.0.0.1:8000/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="contact-info">
+        <div class="card">
+        <i class="card-icon far fa-envelope"></i>
+        <a href="mailto:TEST_EMAIL@mail.com"><font color="white"><p>TEST_EMAIL@mail.com</p></font></a>
+      </div>
+
+      <div class="card">
+        <i class="card-icon fas fa-phone"></i>
+        <p>0123-456-789</p>
+      </div>
+
+      <div class="card">
+        <i class="card-icon fas fa-map-marker-alt"></i>
+        <p>Feng Chia University</p>
+      </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/contact.css" %}" media="screen" />
+    <script src="{% static "javascript/test.js" %}"></script>
+  </body>
+
+</html>

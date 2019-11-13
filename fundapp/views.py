@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 
+from sqlalchemy import create_engine
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from fundapp.profit_test import img
 from datetime import datetime
-from sqlalchemy import create_engine
 from collections import defaultdict
 
 engine = create_engine('sqlite:///fund.db')
@@ -20,6 +20,7 @@ def test(request):
             "," + request.POST['std'] + \
             "," + request.POST['beta'] + \
             "," + request.POST['treynor_ratio'] + \
+            "," + request.POST['revenue'] + \
             "&" + request.POST['btest_time'] + \
             "&" + request.POST['money'] + \
             "&" + request.POST['buy_ratio0'] + \
@@ -42,6 +43,7 @@ def test_respoonse(request, start, end, investement_type, ratio, btest_time, mon
                         std=ratio[1],
                         beta=ratio[2],
                         treynor_ratio=ratio[3],
+                        revenue=ratio[4],
                         btest_time=btest_time,
                         money=money,
                         buy_ratio=np.asarray(
@@ -49,6 +51,7 @@ def test_respoonse(request, start, end, investement_type, ratio, btest_time, mon
                         strategy=strategy,
                         frequency=frequency)
     return JsonResponse(response_data)
+
 
 def index(request):
     engine = create_engine('sqlite:///fund.db')
@@ -92,3 +95,6 @@ def index_form(request, fund_id, area):
         item = item.drop(["fund_id"], axis=1)
         item = item.to_dict('records', into=defaultdict(list))
         return render(request, "index_oversea.html", locals())
+
+def contact(request):
+    return render(request, 'contact.html', locals())
